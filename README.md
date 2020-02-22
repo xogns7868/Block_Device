@@ -7,3 +7,4 @@
 2. blktrace3.c와 blkparser.cpp는 특정 파일이 어떤 LBA에 있는지 파악하는 코드이다. 먼저 blktrace3.c를 실행하고 blktrace -d /dev/sda -a      complete -a issue -o - | blkparse -f "%M %m %d %a %N %S %5T.%9t\n" -i - -o ./blktrace.output 명령어를 실행하여 특정 파일을 read    하는 과정이 찍힌 output 파일을 생성한다. 그리고 blkparser.cpp를 실행해 해당 output 파일에서 원하는 것만 추출한 것을 출력한다.
    sudo hdparm --fibmap 명령어를 실행한 결과와 비교하여 확인한다.
  
+![initial](https://user-images.githubusercontent.com/43363576/75087525-ceb16e00-5584-11ea-8e4f-97022db7dea9.png)
