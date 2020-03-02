@@ -1,3 +1,5 @@
+#define _LARGEFILE64_SOURCE
+
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -14,17 +16,16 @@ int main(int argc, char *argv[]) {
     int length = 5;
     int rc = -1;
     int size;
-    int address;
+    float address;
     scanf("%d", &size);
-    scanf("%d", &address);
+    scanf("%f", &address);
+    printf("%f\n", address);
     char *sector = aligned_alloc(SECTOR_SIZE * size, SECTOR_SIZE * size);
     memset(sector, 0, SECTOR_SIZE);
     /* replace XXX with the source block device */
-    int fd=open("/dev/sda", __O_DIRECT);
-
+    float fd=open("/dev/sda", O_LARGEFILE | __O_DIRECT);
     lseek(fd, 512 * address, SEEK_SET);
     rc = read(fd, sector, SECTOR_SIZE * size);
-     
     free(sector);
     close(fd);
 }
