@@ -8,7 +8,7 @@
 
    다음 화면은 4GB이상의 영역에 read I/O를 요청한 화면입니다.
 
-![initial](https://user-images.githubusercontent.com/43363576/75652591-c9e46c80-5c9e-11ea-8c48-3c2081b30678.png)
+![initial](https://user-images.githubusercontent.com/43363576/75654787-d3240800-5ca3-11ea-9b82-c12ab9267210.png)
 
 2. blktrace3.c와 blkparser.cpp는 특정 파일이 어떤 LBA에 있는지 파악하는 코드이다. 먼저 blktrace3.c를 실행하고              
    blktrace -d /dev/sda -a      complete -a issue -o - | blkparse -f "%M %m %d %a %N %S %5T.%9t\n"  
