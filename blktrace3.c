@@ -1,47 +1,33 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <cstring>
-#include <cstdlib>
+#define _LARGEFILE64_SOURCE
 
-using namespace std;
+#include <stdio.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
-int main() {
-    ifstream inFile("blktrace.output");
-    string buffer;
-    string lba = "";
-    int r_lba = 0;
-    vector<int> v_lba;
-    while(!inFile.eof()){
-        getline(inFile, buffer);
-        if(buffer[4] == 'R'){
-            for(int i = 12; i<=20; i++){
-                lba += buffer[i];
-            }
-            r_lba = atoi(lba.c_str());
-            v_lba.push_back(r_lba);
-            lba = "";
+#define SECTOR_SIZE 512
+
+int main(int argc, char *argv[]) {
+        int offset = 0;
+    int length = 5;
+    int rc = -1;
+
+    char *sector = aligned_alloc(SECTOR_SIZE, SECTOR_SIZE);
+    memset(sector, 0, SECTOR_SIZE);
+    /* replace XXX with the source block device */
+    int fd=open("file.tar.gz",__O_DIRECT | O_LARGEFILE);
+
+    lseek(fd, offset, SEEK_SET);
+    while(1){
+        rc = read(fd, sector, SECTOR_SIZE);
+         if(rc < 0){
+            break;
         }
-    }
-    int flag = 0;
-    vector<int> c_vector;
-    c_vector.push_back(v_lba[0]);
-    int count = 0;
-    for(int i = 0; i < v_lba.size(); i++){
-        if(v_lba[i+1] - v_lba[i] > 1){
-            c_vector.push_back(v_lba[i]);
-            c_vector.push_back(v_lba[i+1]);
-        }
-        if(v_lba[i] - v_lba[i+1] > 1){
-            c_vector.push_back(v_lba[i]);
-            c_vector.push_back(v_lba[i+1]);
-        }
-    }
-    int offset = 0;
-    for(int i = 1; i < c_vector.size(); i++){
-        int size = c_vector[i] - c_vector[i-1] + 1;
-        cout<<offset * 512<<" "<<c_vector[i - 1]<<" "<<c_vector[i]<<" "<<size<<endl;
-        offset += size;
-        i=i+1;
-    }
+    };
+    free(sector);
+    close(fd);
 }
