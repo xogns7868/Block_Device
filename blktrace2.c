@@ -16,14 +16,14 @@ int main(int argc, char *argv[]) {
     int length = 5;
     int rc = -1;
     int size;
-    float address;
+    long long address;
     scanf("%d", &size);
-    scanf("%f", &address);
-    printf("%f\n", address);
+    scanf("%lld", &address);
+    printf("%lld\n", address);
     char *sector = aligned_alloc(SECTOR_SIZE * size, SECTOR_SIZE * size);
     memset(sector, 0, SECTOR_SIZE);
     /* replace XXX with the source block device */
-    float fd=open("/dev/sda", O_LARGEFILE | __O_DIRECT);
+    int fd=open("/dev/sda", O_LARGEFILE | __O_DIRECT);
     lseek(fd, 512 * address, SEEK_SET);
     rc = read(fd, sector, SECTOR_SIZE * size);
     free(sector);
