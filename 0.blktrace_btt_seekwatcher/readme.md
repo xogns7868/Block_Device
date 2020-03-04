@@ -10,3 +10,7 @@
 3. btt -i sda.bin -o sda
 
    sda라는 이름의 avg, dat, msg가 생성된다.
+
+4. seekwatch -t sda.blktrace.*
+  
+   각 CPU에 대한 분석 결과가 trace.png라는 그림 파일로 저장된다.
