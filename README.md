@@ -19,4 +19,5 @@
 ![initial](https://user-images.githubusercontent.com/43363576/75087525-ceb16e00-5584-11ea-8e4f-97022db7dea9.png)
 
    다음 화면은 4.6GB에 해당되는 고용량 파일을 parser한 화면입니다.
+   
 ![initial](https://user-images.githubusercontent.com/43363576/75652168-bab0ef00-5c9d-11ea-92fb-6328ef08f159.png)
