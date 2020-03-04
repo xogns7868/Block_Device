@@ -14,3 +14,5 @@
 4. seekwatch -t sda.blktrace.*
   
    각 CPU에 대한 분석 결과가 trace.png라는 그림 파일로 저장된다.
+   
+   ![initial](https://user-images.githubusercontent.com/43363576/75887698-8724bf00-5e6d-11ea-9a0f-34d6e9a4ebc3.png)
