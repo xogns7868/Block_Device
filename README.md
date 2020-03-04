@@ -1,5 +1,6 @@
 # LBA
 0. blktrace를 이용한 Block I/O Layer에서 발생하는 이벤트를 CPU 단위로 분석한 결과
+
    순서: blktrace -> blkparse -> btt -> seekwatcher로 진행하면서 분석
    btt는 blktrace 추적 도구의 사후 처리 도구. seekwatcher은 blktrace내용을 그림으로 분석해주는 도구
 
