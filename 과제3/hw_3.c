@@ -12,7 +12,7 @@
 #define SECTOR_SIZE 512
 
 int main(int argc, char *argv[]) {
-        int offset = 0;
+    int offset = 0;
     int length = 5;
     int rc = -1;
 
